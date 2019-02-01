@@ -9,3 +9,6 @@ Andererseits könnte es zu einem Streit mit dem Datenbankadministrator kommen, a
 Wie sich herausstellt, unterstützt Spring Data JDBC diesen Ansatz.
 In diesem Vortrag stelle ich vor, wie man sein Objektmodell entsprechend DDD entwirft und mit Spring Data JDBC die dazu passende Datenbankschicht baut.
 Ich bringe sogar im Übertragenen Sinne Süßigkeiten zur Beruhigung von Datenbankadministratoren mit.
+
+
+The published slides are here: http://bit.ly/ddd-jdbc
