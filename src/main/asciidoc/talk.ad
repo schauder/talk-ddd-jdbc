@@ -3,7 +3,7 @@
 :twitter-tag: @jensschauder
 :conference-tag: #etffm19
 :talk-tag: #dddJdbc
-:slide-link: http://bit.ly/jsch-comm
+:slide-link: http://bit.ly/ddd-jdbc
 :linkattrs:
 
 include::footer.ad[]
