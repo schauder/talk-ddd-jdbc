@@ -1,55 +1,83 @@
 = Template slide
 :icons: font
 :twitter-tag: @jensschauder
-:conference-tag: @jugka
-:talk-tag: #communication
+:conference-tag: #etffm19
+:talk-tag: #dddJdbc
 :slide-link: http://bit.ly/jsch-comm
 :linkattrs:
 
 include::footer.ad[]
 
-== section title
+= Domain Driven Design with relational Databases and Spring Data JDBC.
 
-== !
+== DDD
+
+=== Ubiquitious language.
+
+Important for communicating with customers and co workers
+
+=== Bounded Context.
+
+Large grain modularization.
+
+=== Aggregates and Repositories.
+
+This is what I want to fokus on.
+
+== Lets start with an example.
+
+=== !
+
+Model: Customer + Address + PurchaseOrder + OrderItem + Product + ProductCategory
 
 image::no.jpg[background, size=contain]
 
-=== Quote
+=== Everything is connected.
 
-[quote]
-Komm wir essen Opa
+=== Ever tried to test such a model?
 
-[quote]
-Ok, ich hole das Beil
+=== Imagine 200 Tables
 
-[NOTE.speaker]
-====
-This is a speaker note
-====
+=== !
+
+image: cry
+
+== Aggregates
+
+=== !
+
+Quote: DDD - Eric Evans.
+
+An AGGREGATE is a cluster of associated objects that we treat as a unit
+
+=== What are our Aggregates?
+
+=== !
+
+image
+
+=== Aggregate Root.
+
+Each AGGREGATE has a root [...]. [It] is a single, specific ENTITY contained in the AGGREGATE.
+The root is the only member of the AGGREGATE that outside objects are allowed to hold references to.
+
+
+=== !
+
+image roots sitting at the boundary
+
+
+=== Aggregates are Boundaries of integrity
+
 
 == Resourcen
-
-++++
-<div class="reference"><a href="http://amzn.to/2xniDmq">7 Habits Of Highly Effective People <br> Stephen R Covey - http://amzn.to/2xniDmq</a>
-</div><div class="reference"><a href="http://amzn.to/2wzojgf">Das Corssen-Prinzip Jens Corssen - http://amzn.to/2wzojgf</a>
-</div><div class="reference"><a href="http://amzn.to/2x83XIH">An Astronaut's Guide to Life on Earth <br> Chris Hadfield - http://amzn.to/2x83XIH</a>
-</div><div class="reference"><a href="http://amzn.to/2wjgThz">Auf dem Kreuzzug ins Glück <br> Die Toten Hosen - http://amzn.to/2wjgThz</a>
-</div><div class="reference"><a href="https://www.youtube.com/watch?v=5J6jAC6XxAI">Tim Ferris http://bit.ly/timFerris</a>
-</div><div class="reference"><a href="http://amzn.to/2v0IUdI">Denken hilft zwar, nützt aber nichts <br> Dan Ariely - http://amzn.to/2v0IUdI</a>
-</div><div class="reference"><a href="http://amzn.to/2xmX31N">Thinking Fast and Slow <br> Daniel Kahneman - http://amzn.to/2xmX31N</a>
-</div>
-++++
-
-== Resourcen
-
-++++
-<div class="reference"><a href="http://amzn.to/2x7NGn3">Just Listen Mark Goulston - http://amzn.to/2x7NGn3</a>
-</div><div class="reference"><a href="http://amzn.to/2g0assW">Difficult Conversations Douglas Stone - http://amzn.to/2g0assW</a>
-</div><div class="reference"><a href="http://inews.co.uk/opinion/comment/i-deal-nasty-comments-online/">Frau begegnet Hasskomentaren mit freundlichem Nachfragen <br> bit.ly/hatecomments</a>
-</div><div class="reference"><a href="http://www.huffingtonpost.com/entry/black-man-daryl-davis-befriends-kkk-documentary-accidental-courtesy_us_585c250de4b0de3a08f495fc">Schwarzer freundet sich mit Klansmen an <br> http://bit.ly/befriendKKK</a>
-</div><div class="reference"><a href="https://blog.codinghorror.com/how-to-talk-to-human-beings/">How to talk to human beings <br> Jeff Atwood - http://bit.ly/talk2humans/</a>
-</div><div class="reference"><a href="http://theoatmeal.com/comics/believe">The Oatmeal http://theoatmeal.com/comics/believe</a>
-</div>
-++++
 
 include::self.ad[]
+
+
+== Material
+
+An AGGREGATE is a cluster of associated objects that we treat as a unit for the purpose of data changes.
+Each AGGREGATE has a root and a boundary. The boundary defines what is inside the AGGREGATE. The root is a single, specific ENTITY contained in the AGGREGATE.
+
+The root is the only member of the AGGREGATE that outside objects are allowed to hold references to[.]
