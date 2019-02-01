@@ -1,4 +1,4 @@
-= Template slide
+= Domain Driven Design with relational Databases and Spring Data JDBC.
 :icons: font
 :twitter-tag: @jensschauder
 :conference-tag: #etffm19
@@ -7,8 +7,6 @@
 :linkattrs:
 
 include::footer.ad[]
-
-= Domain Driven Design with relational Databases and Spring Data JDBC.
 
 == DDD
 
