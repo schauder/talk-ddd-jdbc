@@ -8,67 +8,262 @@
 
 include::footer.ad[]
 
+== Preface: Buying a Sofa.
+
+Can you help me pick up my new sofa?
+
+[NOTE.speaker]
+====
+If performing an action is expensive, don't make it look cheap, except when you want to trick someone.
+====
+
+=== And now to something completely different!
+
+== Relational Databases are awesome.
+
+=== DRY.
+
+=== Strong consistency.
+
+=== Mathematically sound.
+
+=== Extremely powerful query language.
+
+[NOTE.speaker]
+====
+It's ugly, but it's powerful.
+====
+
+=== !
+
+Lego Database Model
+
+=== But there are problems!
+
+[NOTE.speaker]
+====
+Why are people using NoSQL databases?
+====
+
+== Scalability
+
+=== Foreign keys cause locks.
+
+=== Foreign keys cost resources.
+
+=== Schemas don't scale across servers.
+
+== The ORM disaster.
+
+=== Entity == Table.
+
+=== Property == Column.
+
+=== What about references?
+
+=== Lazy loading?
+
+[NOTE.speaker]
+====
+N+1 problem.
+
+The sofa problem.
+====
+
+=== Eager loading?
+
+[NOTE.speaker]
+====
+Superfluous loads.
+
+Where to stop?
+====
+
+=== JPA offers both!
+
+[NOTE.speaker]
+====
+Great!
+
+You can have both problems.
+
+Plus LazyLoadingExceptions
+====
+
+=== What about persisting/deleting?
+
+[NOTE.speaker]
+====
+Lazy something doesn't really cut it.
+====
+
+=== (Optimistic) Locking?
+
+[NOTE.speaker]
+====
+I can't save a Lego Model when someone has changed it since I loaded it.
+But what if someone change the theme it references?
+Or the content of bricks?
+====
+
+=== How about testing?
+
+=== The solution comes from 2004.
+
+Actually it's from the 1990s!
+
 == DDD
 
-=== Ubiquitious language.
+=== Aggregates.
 
-Important for communicating with customers and co workers
+[quote, Eric Evans, "Domain-Driven Design"]
+____
+An AGGREGATE is a cluster of associated objects that we treat as a unit.
+____
 
-=== Bounded Context.
+[NOTE.speaker]
+====
+Clusters of entities
 
-Large grain modularization.
+Consistent at all times
 
-=== Aggregates and Repositories.
+Loaded and persisted atomically
 
-This is what I want to fokus on.
-
-== Lets start with an example.
-
-=== !
-
-Model: Customer + Address + PurchaseOrder + OrderItem + Product + ProductCategory
-
-image::no.jpg[background, size=contain]
-
-=== Everything is connected.
-
-=== Ever tried to test such a model?
-
-=== Imagine 200 Tables
+====
 
 === !
 
-image: cry
-
-== Aggregates
-
-=== !
-
-Quote: DDD - Eric Evans.
-
-An AGGREGATE is a cluster of associated objects that we treat as a unit
-
-=== What are our Aggregates?
-
-=== !
-
-image
+image draw in aggregates.
 
 === Aggregate Root.
 
-Each AGGREGATE has a root [...]. [It] is a single, specific ENTITY contained in the AGGREGATE.
-The root is the only member of the AGGREGATE that outside objects are allowed to hold references to.
+[NOTE.speaker]
+====
+The only one allowed to access the internals of an aggregate
 
+The only part of an aggregate allowed to be accessed from outside the aggregate.
+====
 
 === !
 
-image roots sitting at the boundary
+image draw in aggregate roots.
 
+=== !
 
 === Aggregates are Boundaries of integrity
 
+=== Transactional consistencey inside
+
+=== Eventual consistency between aggregates
+
+[NOTE.speaker]
+====
+Don't tell the DBAs, but that means: no FKs
+
+More about that later.
+====
+
+=== !
+
+image draw in dotted relations across aggregates.
+
+== How to represent this in Java?
+
+=== Annotations!!!!
+
+=== ???
+
+image lukas-eder.png
+
+=== No References Across Aggregates
+
+[quote, David Masters,  ]
+____
+It makes life much easier if you just keep a reference of the aggregate's ID rather than the actual aggregate itself.
+____
+
+
+== It cuts down complexity
+
+=== What to load/persist/delete?
+
+Everything within an aggregate.
+
+=== Optimistic locking of collections?
+
+Lock on the aggregate root.
+
+=== How about testing?
+
+Nobody cares if the entity referenced by an id exists.
+
+[NOTE.speaker]
+====
+Test a single aggregate
+
+Or few.
+
+As you desire.
+====
+
+== But, but the Foreign Keys!
+
+=== Separate data store.
+
+[NOTE.speaker]
+====
+Data of different aggregates doesn't have to be in the same database
+
+Easy horizontal scaling.
+
+Could even be a completely different technology.
+====
+
+=== Deferred constraints.
+
+[NOTE.speaker]
+====
+Tests doing a rollback don't care.
+
+Consistency needs to happen in a single transaction, but not in a single statement.
+====
+
+=== Normal Foreign Constraints.
+
+[NOTE.speaker]
+====
+Ordering of persisting multiple aggregates becomes important.
+
+You loose many benefits.
+
+You keep the structure in you main programming language.
+====
+
+== What about Spring Data JDBC?
+
+=== Spring Data implements repositories.
+
+[NOTE.speaker]
+====
+Repositories load/persist aggregates
+Considerably broken for JPA
+====
+
+=== Spring Data JDBC follows the described model.
+
+[NOTE.speaker]
+====
+In fact I arrived at this model be failing to solve the challenges in any other way.
+====
+
 
 == Resourcen
+
+Vaughn Vernon
+http://dddcommunity.org/wp-content/uploads/files/pdf_articles/Vernon_2011_1.pdf
+http://dddcommunity.org/wp-content/uploads/files/pdf_articles/Vernon_2011_2.pdf
+http://dddcommunity.org/wp-content/uploads/files/pdf_articles/Vernon_2011_3.pdf
+
 
 include::self.ad[]
 
@@ -79,3 +274,24 @@ An AGGREGATE is a cluster of associated objects that we treat as a unit for the 
 Each AGGREGATE has a root and a boundary. The boundary defines what is inside the AGGREGATE. The root is a single, specific ENTITY contained in the AGGREGATE.
 
 The root is the only member of the AGGREGATE that outside objects are allowed to hold references to[.]
+
+
+
+Value objects
+
+Don't include a collection in your aggregate, that grows over time without (small) limit.
+
+What about displaying an order, I need all this data. ==> build your custom method that loads all the data you need in one go.
+
+Modify only one aggregate in a single transaction.
+If you don't hold any reference, you can't modify another aggregate.
+
+
+Vaughn Vernon
+http://dddcommunity.org/wp-content/uploads/files/pdf_articles/Vernon_2011_1.pdf
+http://dddcommunity.org/wp-content/uploads/files/pdf_articles/Vernon_2011_2.pdf
+http://dddcommunity.org/wp-content/uploads/files/pdf_articles/Vernon_2011_3.pdf
+
+
+DDD
+Any rule that spans AGGREGATES will not be expected to be up-to-date at all times. Through event processing. batch processing, or other update mechanisms, other dependencies can be resolved wthoin sme specific time.
