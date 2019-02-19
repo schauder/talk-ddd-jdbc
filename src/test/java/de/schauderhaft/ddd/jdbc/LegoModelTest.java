@@ -37,8 +37,20 @@ public class LegoModelTest {
 	@Autowired
 	Bricks bricks;
 
+
 	@Test
-	public void test() {
+	public void modelReferencingManual() {
+
+		LegoModel womenOfNasa = new LegoModel("Women of NASA");
+		womenOfNasa.add(new Manual("English", "blah, blah, ... assembly ... blah"));
+
+		models.save(womenOfNasa);
+	}
+
+
+
+	@Test
+	public void modelReferencingBricks() {
 
 		Brick thin_2x2 = new Brick("2x2 - thin");
 		Brick thin_2x4 = new Brick("2x2 - normal");

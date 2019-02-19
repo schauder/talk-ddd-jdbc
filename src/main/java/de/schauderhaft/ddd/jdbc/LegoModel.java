@@ -19,7 +19,9 @@ import lombok.val;
 import org.springframework.data.annotation.Id;
 import org.springframework.util.Assert;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -30,6 +32,7 @@ public class LegoModel {
 	@Id
 	private Long id;
 	private String name;
+	private List<Manual> manuals = new ArrayList<>();
 
 	public LegoModel(String name) {
 		this.name = name;
@@ -59,4 +62,7 @@ public class LegoModel {
 		return content.size();
 	}
 
+	public void add(Manual manual) {
+		manuals.add(manual);
+	}
 }

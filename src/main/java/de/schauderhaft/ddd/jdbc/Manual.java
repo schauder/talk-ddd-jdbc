@@ -21,4 +21,10 @@ package de.schauderhaft.ddd.jdbc;
 public class Manual {
 	String language;
 	String content;
+
+	public Manual(String language, String content) {
+
+		this.language = language;
+		this.content = content;
+	}
 }
