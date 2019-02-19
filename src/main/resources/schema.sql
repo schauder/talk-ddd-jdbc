@@ -1,5 +1,22 @@
-create table LEGO_MODEL
+
+// The Brick aggregate
+CREATE TABLE BRICK
 (
-  Id   SERIAL primary key,
-  name varchar(200)
+  ID   SERIAL PRIMARY KEY ,
+  DESCRIPTION VARCHAR(200)
+);
+
+
+// The LegoModel aggregate
+CREATE TABLE LEGO_MODEL
+(
+  ID   SERIAL PRIMARY KEY ,
+  NAME VARCHAR(200)
+);
+
+CREATE TABLE CONTENT
+(
+  LEGO_MODEL NUMBER,
+  BRICK_ID NUMBER,
+  AMOUNT NUMBER
 );

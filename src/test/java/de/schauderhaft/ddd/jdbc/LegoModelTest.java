@@ -15,14 +15,14 @@
  */
 package de.schauderhaft.ddd.jdbc;
 
+import lombok.val;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringBootConfiguration;
-import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
 import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import static java.util.Arrays.*;
 
 /**
  * @author Jens Schauder
@@ -32,12 +32,24 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class LegoModelTest {
 
 	@Autowired
-	LegoModels repository;
+	LegoModels models;
+
+	@Autowired
+	Bricks bricks;
 
 	@Test
 	public void test() {
-		LegoModel womenOfNasa = new LegoModel("Women of NASA");
 
-		repository.save(womenOfNasa);
+		Brick thin_2x2 = new Brick("2x2 - thin");
+		Brick thin_2x4 = new Brick("2x2 - normal");
+		Brick normal_2x2 = new Brick("2x4 - normal");
+
+		bricks.saveAll(asList(thin_2x2, thin_2x4, normal_2x2));
+
+		LegoModel womenOfNasa = new LegoModel("Women of NASA");
+		womenOfNasa.add(thin_2x2, 6);
+		womenOfNasa.add(thin_2x4, 3);
+
+		models.save(womenOfNasa);
 	}
 }
