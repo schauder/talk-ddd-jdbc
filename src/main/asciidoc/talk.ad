@@ -36,7 +36,7 @@ It's ugly, but it's powerful.
 
 === !
 
-Lego Database Model
+image::lego-aggregate.001.png[canvas,size=contain]
 
 === But there are problems!
 
@@ -133,7 +133,7 @@ Loaded and persisted atomically
 
 === !
 
-image draw in aggregates.
+image::lego-aggregate.002.png[canvas,size=contain]
 
 === Aggregate Root.
 
@@ -146,13 +146,11 @@ The only part of an aggregate allowed to be accessed from outside the aggregate.
 
 === !
 
-image draw in aggregate roots.
-
-=== !
+image::lego-aggregate.003.png[canvas,size=contain]
 
 === Aggregates are Boundaries of integrity
 
-=== Transactional consistencey inside
+=== Transactional consistency inside
 
 === Eventual consistency between aggregates
 
@@ -165,15 +163,16 @@ More about that later.
 
 === !
 
-image draw in dotted relations across aggregates.
+image::lego-aggregate.004.png[canvas,size=contain]
 
 == How to represent this in Java?
 
 === Annotations!!!!
 
-=== ???
+=== !
 
-image lukas-eder.png
+image::lukas-eder.png[canvas,size=contain]
+
 
 === No References Across Aggregates
 
@@ -205,6 +204,10 @@ Or few.
 
 As you desire.
 ====
+
+=== No M:1 or M:N
+
+except via IDs
 
 == But, but the Foreign Keys!
 
@@ -256,42 +259,23 @@ Considerably broken for JPA
 In fact I arrived at this model be failing to solve the challenges in any other way.
 ====
 
+=== Persistence via JDBC.
+
+=== Everything referenced gets persisted.
+
+=== Code.
 
 == Resourcen
 
-Vaughn Vernon
+=== Vaughn Vernon
+
 http://dddcommunity.org/wp-content/uploads/files/pdf_articles/Vernon_2011_1.pdf
+
 http://dddcommunity.org/wp-content/uploads/files/pdf_articles/Vernon_2011_2.pdf
+
 http://dddcommunity.org/wp-content/uploads/files/pdf_articles/Vernon_2011_3.pdf
 
 
 include::self.ad[]
 
 
-== Material
-
-An AGGREGATE is a cluster of associated objects that we treat as a unit for the purpose of data changes.
-Each AGGREGATE has a root and a boundary. The boundary defines what is inside the AGGREGATE. The root is a single, specific ENTITY contained in the AGGREGATE.
-
-The root is the only member of the AGGREGATE that outside objects are allowed to hold references to[.]
-
-
-
-Value objects
-
-Don't include a collection in your aggregate, that grows over time without (small) limit.
-
-What about displaying an order, I need all this data. ==> build your custom method that loads all the data you need in one go.
-
-Modify only one aggregate in a single transaction.
-If you don't hold any reference, you can't modify another aggregate.
-
-
-Vaughn Vernon
-http://dddcommunity.org/wp-content/uploads/files/pdf_articles/Vernon_2011_1.pdf
-http://dddcommunity.org/wp-content/uploads/files/pdf_articles/Vernon_2011_2.pdf
-http://dddcommunity.org/wp-content/uploads/files/pdf_articles/Vernon_2011_3.pdf
-
-
-DDD
-Any rule that spans AGGREGATES will not be expected to be up-to-date at all times. Through event processing. batch processing, or other update mechanisms, other dependencies can be resolved wthoin sme specific time.
