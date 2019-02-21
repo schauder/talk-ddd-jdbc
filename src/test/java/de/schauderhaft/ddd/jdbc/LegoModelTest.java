@@ -61,6 +61,26 @@ public class LegoModelTest {
 		LegoModel womenOfNasa = new LegoModel("Women of NASA");
 		womenOfNasa.add(thin_2x2, 6);
 		womenOfNasa.add(thin_2x4, 3);
+		womenOfNasa.add(normal_2x2, 4);
+
+		models.save(womenOfNasa);
+	}
+
+	@Test
+	public void modelManualAndBricks() {
+
+		Brick thin_2x2 = new Brick("2x2 - thin");
+		Brick thin_2x4 = new Brick("2x2 - normal");
+		Brick normal_2x2 = new Brick("2x4 - normal");
+
+		bricks.saveAll(asList(thin_2x2, thin_2x4, normal_2x2));
+
+		LegoModel womenOfNasa = new LegoModel("Women of NASA");
+		womenOfNasa.add(new Manual("English", "blah, blah, ... assembly ... blah"));
+
+		womenOfNasa.add(thin_2x2, 6);
+		womenOfNasa.add(thin_2x4, 3);
+		womenOfNasa.add(normal_2x2, 4);
 
 		models.save(womenOfNasa);
 	}

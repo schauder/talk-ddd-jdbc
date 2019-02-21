@@ -33,15 +33,15 @@ public class LegoModel {
 	private Long id;
 	private String name;
 	private List<Manual> manuals = new ArrayList<>();
+	/**
+	 * maps the id of a brick to the number of pieces contained.
+	 */
+	private Set<BrickContentItem> content = new HashSet<>();
 
 	public LegoModel(String name) {
 		this.name = name;
 	}
 
-	/**
-	 * maps the id of a brick to the number of pieces contained.
-	 */
-	private Set<BrickContentItem> content = new HashSet<>();
 
 	public void add(Brick brick, Integer amount) {
 
