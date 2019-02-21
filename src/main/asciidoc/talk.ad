@@ -265,16 +265,29 @@ In fact I arrived at this model be failing to solve the challenges in any other 
 
 === Code.
 
-== Resourcen
+== Resources.
 
 === Vaughn Vernon
 
-http://dddcommunity.org/wp-content/uploads/files/pdf_articles/Vernon_2011_1.pdf
+http://dddcommunity.org/wp-content/uploads/files/pdf_articles/Vernon_2011_1.pdf[Effective Aggregate Design - Part I]
 
-http://dddcommunity.org/wp-content/uploads/files/pdf_articles/Vernon_2011_2.pdf
+http://dddcommunity.org/wp-content/uploads/files/pdf_articles/Vernon_2011_2.pdf[Effective Aggregate Design - Part II]
 
-http://dddcommunity.org/wp-content/uploads/files/pdf_articles/Vernon_2011_3.pdf
+http://dddcommunity.org/wp-content/uploads/files/pdf_articles/Vernon_2011_3.pdf[Effective Aggregate Design - Part III]
 
+=== Spring Data JDBC
+
+https://spring.io/blog/2018/09/17/introducing-spring-data-jdbc[Introducing Spring Data JDBC]
+
+https://spring.io/blog/2018/09/24/spring-data-jdbc-references-and-aggregates[Spring Data JDBC - References and Aggregates]
+
+=== DDD vs JPA
+
+http://scabl.blogspot.com/p/advancing-enterprise-ddd.html[Advancing Enterprise DDD]
+
+=== Ted Neward
+
+http://blogs.tedneward.com/post/the-vietnam-of-computer-science/[The Vietnam of Computer Science]
 
 include::self.ad[]
 
