@@ -15,7 +15,6 @@
  */
 package de.schauderhaft.ddd.jdbc;
 
-import lombok.val;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +47,6 @@ public class LegoModelTest {
 	}
 
 
-
 	@Test
 	public void modelReferencingBricks() {
 
@@ -56,7 +54,7 @@ public class LegoModelTest {
 		Brick thin_2x4 = new Brick("2x4 - thin");
 		Brick normal_2x2 = new Brick("2x2 - normal");
 
-			bricks.saveAll(asList(thin_2x2, thin_2x4, normal_2x2));
+		bricks.saveAll(asList(thin_2x2, thin_2x4, normal_2x2));
 
 		LegoModel womenOfNasa = new LegoModel("Women of NASA");
 		womenOfNasa.add(thin_2x2, 6);
