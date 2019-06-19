@@ -1,25 +1,31 @@
 = Domain Driven Design with relational Databases and Spring Data JDBC.
 :icons: font
 :twitter-tag: @jensschauder
-:conference-tag: @JavaLandConf
+:conference-tag: @jugHannover
 :talk-tag: #dddJdbc
 :slide-link: http://bit.ly/ddd-jdbc
 :linkattrs:
 
 include::footer.ad[]
 
-== Preface: Buying a Sofa.
+== !
 
-Can you help me pick up my new sofa?
+image::memes.jpg[canvas,size=contain]
+
+== !
+
+image::sofa.jpg[canvas,size=contain]
 
 [NOTE.speaker]
 ====
+Can you help me pick up my new sofa?
+
 If performing an action is expensive, don't make it look cheap, except when you want to trick someone.
 ====
 
-=== And now to something completely different!
+== !
 
-== Relational Databases are awesome.
+image::comparing.jpg[canvas,size=contain]
 
 === DRY.
 
@@ -38,10 +44,13 @@ It's ugly, but it's powerful.
 
 image::lego-aggregate.001.png[canvas,size=contain]
 
-=== But there are problems!
+=== !
+
+image::one-does-not.jpg[canvas,size=contain]
 
 [NOTE.speaker]
 ====
+But there are problems!
 Why are people using NoSQL databases?
 ====
 
@@ -112,7 +121,9 @@ Or the content of bricks?
 
 Actually it's from the 1990s!
 
-== DDD
+== !
+
+image::ddd.jpg[canvas,size=contain]
 
 === Aggregates.
 
@@ -207,7 +218,11 @@ As you desire.
 
 === No M:1 or M:N
 
-except via IDs
+=== !
+
+image::wat.jpg[canvas,size=contain]
+
+=== except via IDs
 
 == But, but the Foreign Keys!
 
