@@ -15,12 +15,14 @@
  */
 package de.schauderhaft.ddd.jdbc;
 
+import lombok.EqualsAndHashCode;
 import org.springframework.data.relational.core.mapping.Table;
 
 /**
  * @author Jens Schauder
  */
 @Table("Content")
+@EqualsAndHashCode(of = "brickId")
 public class BrickContentItem {
 
 	final Long brickId;

@@ -36,7 +36,6 @@ public class LegoModelTest {
 	@Autowired
 	Bricks bricks;
 
-
 	@Test
 	public void modelReferencingManual() {
 
@@ -45,7 +44,6 @@ public class LegoModelTest {
 
 		models.save(womenOfNasa);
 	}
-
 
 	@Test
 	public void modelReferencingBricks() {
