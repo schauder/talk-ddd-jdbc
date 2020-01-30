@@ -242,7 +242,7 @@ Tests doing a rollback don't care.
 Consistency needs to happen in a single transaction, but not in a single statement.
 ====
 
-=== Normal Foreign Constraints.
+=== Normal Foreign Key Constraints.
 
 [NOTE.speaker]
 ====
