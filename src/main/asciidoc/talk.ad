@@ -1,7 +1,7 @@
-= Domain Driven Design with relational Databases and Spring Data JDBC.
+= Domain Driven Design with relational Databases.
 :icons: font
 :twitter-tag: @jensschauder
-:conference-tag: #SEACONHH
+:conference-tag: #virtualized
 :talk-tag: #dddJdbc
 :slide-link: http://bit.ly/ddd-jdbc
 :linkattrs:
@@ -23,19 +23,6 @@ If performing an action is expensive, don't make it look cheap, except when you 
 
 image::comparing.jpg[canvas,size=contain]
 
-=== DRY.
-
-=== Strong consistency.
-
-=== Mathematically sound.
-
-=== Extremely powerful query language.
-
-[NOTE.speaker]
-====
-It's ugly, but it's powerful.
-====
-
 === !
 
 image::lego-aggregate.001.png[canvas,size=contain]
@@ -49,14 +36,6 @@ image::one-does-not.jpg[canvas,size=contain]
 But there are problems!
 Why are people using NoSQL databases?
 ====
-
-== Scalability
-
-=== Foreign keys cause locks.
-
-=== Foreign keys cost resources.
-
-=== Schemas don't scale across servers.
 
 == The ORM disaster.
 
@@ -253,7 +232,13 @@ You loose many benefits.
 You keep the structure in you main programming language.
 ====
 
-== What about Spring Data JDBC?
+== Wrap up
+
+* Model aggregate boundaries in the domain model.
+
+* Reconsider where you want foreign keys.
+
+== Time left for Data JDBC?
 
 === Spring Data implements repositories.
 

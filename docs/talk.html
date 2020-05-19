@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><title>Domain Driven Design with relational Databases and Spring Data JDBC.</title><meta content="yes" name="apple-mobile-web-app-capable" /><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style" /><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport" /><link href="reveal.js-3.7.0/css/reveal.css" rel="stylesheet" /><link rel="stylesheet" href="theme/schauderhaft.css" id="theme" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" /><style>/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><title>Domain Driven Design with relational Databases.</title><meta content="yes" name="apple-mobile-web-app-capable" /><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style" /><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport" /><link href="reveal.js-3.7.0/css/reveal.css" rel="stylesheet" /><link rel="stylesheet" href="theme/schauderhaft.css" id="theme" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" /><style>/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
 /*pre.CodeRay {background-color:#f7f7f8;}*/
 .CodeRay .line-numbers{border-right:1px solid #d8d8d8;padding:0 0.5em 0 .25em}
 .CodeRay span.line-numbers{display:inline-block;margin-right:.5em;color:rgba(0,0,0,.3)}
@@ -90,7 +90,7 @@ table.CodeRay td.code>pre{padding:0}
 link.rel = 'stylesheet';
 link.type = 'text/css';
 link.href = window.location.search.match( /print-pdf/gi ) ? "reveal.js-3.7.0/css/print/pdf.css" : "reveal.js-3.7.0/css/print/paper.css";
-document.getElementsByTagName( 'head' )[0].appendChild( link );</script><!--[if lt IE 9]><script src="reveal.js-3.7.0/lib/js/html5shiv.js"></script><![endif]--></head><body><div class="reveal"><div class="slides"><section class="title" data-state="title"><h1>Domain Driven Design with relational Databases and Spring Data JDBC.</h1><div class="preamble"><script type="text/javascript">
+document.getElementsByTagName( 'head' )[0].appendChild( link );</script><!--[if lt IE 9]><script src="reveal.js-3.7.0/lib/js/html5shiv.js"></script><![endif]--></head><body><div class="reveal"><div class="slides"><section class="title" data-state="title"><h1>Domain Driven Design with relational Databases.</h1><div class="preamble"><script type="text/javascript">
     window.addEventListener("load", function() {
     	Reveal.configure({
           keyboard: {
@@ -112,16 +112,15 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );</script><!--[if 
 </script>
 <div id="schauderhaft-footer" class="footer">
     <span class="element">@jensschauder</span>
-    <span class="element">#SEACONHH</span>
+    <span class="element">#virtualized</span>
     <span class="element">#dddJdbc</span>
 </div></div></section>
 <section data-background-image="images/sofa.jpg" data-background-size="contain">
 <aside class="notes"><div class="paragraph"><p>Can you help me pick up my new sofa?</p></div>
 <div class="paragraph"><p>If performing an action is expensive, don&#8217;t make it look cheap, except when you want to trick someone.</p></div></aside></section>
-<section><section data-background-image="images/comparing.jpg" data-background-size="contain"></section><section id="dry"><h2>DRY.</h2></section><section id="strong_consistency"><h2>Strong consistency.</h2></section><section id="mathematically_sound"><h2>Mathematically sound.</h2></section><section id="extremely_powerful_query_language"><h2>Extremely powerful query language.</h2><aside class="notes"><div class="paragraph"><p>It&#8217;s ugly, but it&#8217;s powerful.</p></div></aside></section><section data-background-image="images/lego-aggregate.001.png" data-background-size="contain"></section><section data-background-image="images/one-does-not.jpg" data-background-size="contain">
+<section><section data-background-image="images/comparing.jpg" data-background-size="contain"></section><section data-background-image="images/lego-aggregate.001.png" data-background-size="contain"></section><section data-background-image="images/one-does-not.jpg" data-background-size="contain">
 <aside class="notes"><div class="paragraph"><p>But there are problems!
 Why are people using NoSQL databases?</p></div></aside></section></section>
-<section><section id="scalability"><h2>Scalability</h2></section><section id="foreign_keys_cause_locks"><h2>Foreign keys cause locks.</h2></section><section id="foreign_keys_cost_resources"><h2>Foreign keys cost resources.</h2></section><section id="schemas_dont_scale_across_servers"><h2>Schemas don&#8217;t scale across servers.</h2></section></section>
 <section><section id="the_orm_disaster"><h2>The ORM disaster.</h2></section><section id="entity_table"><h2>Entity == Table.</h2></section><section id="property_column"><h2>Property == Column.</h2></section><section id="what_about_references"><h2>What about references?</h2></section><section id="lazy_loading"><h2>Lazy loading?</h2><aside class="notes"><div class="paragraph"><p>N+1 problem.</p></div>
 <div class="paragraph"><p>The sofa problem.</p></div></aside></section><section id="eager_loading"><h2>Eager loading?</h2><aside class="notes"><div class="paragraph"><p>Superfluous loads.</p></div>
 <div class="paragraph"><p>Where to stop?</p></div></aside></section><section id="jpa_offers_both"><h2>JPA offers both!</h2><aside class="notes"><div class="paragraph"><p>Great!</p></div>
@@ -146,7 +145,8 @@ Or the content of bricks?</p></div></aside></section><section id="how_about_test
 <div class="paragraph"><p>Consistency needs to happen in a single transaction, but not in a single statement.</p></div></aside></section><section id="normal_foreign_key_constraints"><h2>Normal Foreign Key Constraints.</h2><aside class="notes"><div class="paragraph"><p>Ordering of persisting multiple aggregates becomes important.</p></div>
 <div class="paragraph"><p>You loose many benefits.</p></div>
 <div class="paragraph"><p>You keep the structure in you main programming language.</p></div></aside></section></section>
-<section><section id="what_about_spring_data_jdbc"><h2>What about Spring Data JDBC?</h2></section><section id="spring_data_implements_repositories"><h2>Spring Data implements repositories.</h2><aside class="notes"><div class="paragraph"><p>Repositories load/persist aggregates
+<section id="wrap_up"><h2>Wrap up</h2><div class="ulist"><ul><li><p>Model aggregate boundaries in the domain model.</p></li><li><p>Reconsider where you want foreign keys.</p></li></ul></div></section>
+<section><section id="time_left_for_data_jdbc"><h2>Time left for Data JDBC?</h2></section><section id="spring_data_implements_repositories"><h2>Spring Data implements repositories.</h2><aside class="notes"><div class="paragraph"><p>Repositories load/persist aggregates
 Considerably broken for JPA</p></div></aside></section><section id="spring_data_jdbc_follows_the_described_model"><h2>Spring Data JDBC follows the described model.</h2><aside class="notes"><div class="paragraph"><p>In fact I arrived at this model be failing to solve the challenges in any other way.</p></div></aside></section><section id="persistence_via_jdbc"><h2>Persistence via JDBC.</h2></section><section id="everything_referenced_gets_persisted"><h2>Everything referenced gets persisted.</h2></section><section id="code"><h2>Code.</h2></section></section>
 <section><section id="resources"><h2>Resources.</h2></section><section id="vaughn_vernon"><h2>Vaughn Vernon</h2><div class="paragraph"><p><a href="http://dddcommunity.org/wp-content/uploads/files/pdf_articles/Vernon_2011_1.pdf">Effective Aggregate Design - Part I</a></p></div>
 <div class="paragraph"><p><a href="http://dddcommunity.org/wp-content/uploads/files/pdf_articles/Vernon_2011_2.pdf">Effective Aggregate Design - Part II</a></p></div>
